@@ -1,22 +1,30 @@
 package com.example.cryptoapp;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
-import androidx.recylerview.widget.RecyclerView;
-public class CurrencyRVAdapter extends RecylerView.Adapter<CurrencyRVAdapter.ViewHolder>{
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
+public class CurrencyRVAdapter extends RecyclerView.Adapter<CurrencyRVAdapter.ViewHolder> {
     private ArrayList<CurrencyRVModal> currencyRVModalArrayList;
     private Context context;
     private static DecimalFormat df2 = new DecimalFormat("#,##");
 
-    public CurrencyRVAdapter(ArrayList<CurrencyRVModal> currencyRVModalArrayList, Context context) {
+    public CurrencyRVAdapter(ArrayList<CurrencyRVModal> currencyRVModalArrayList, MainActivity context) {
         this.currencyRVModalArrayList = currencyRVModalArrayList;
         this.context = context;
     }
 
     @NonNull
     @Override
-
     public CurrencyRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(context).inflate.(R.layout.currency_rv_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.currency_rv_item,parent,false);
         return new CurrencyRVAdapter.ViewHolder(view);
     }
 
@@ -33,13 +41,13 @@ public class CurrencyRVAdapter extends RecylerView.Adapter<CurrencyRVAdapter.Vie
         return currencyRVModalArrayList.size();
     }
 
-    public class ViewHolder extends RecylerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        private TextView currencyNameTV , symbolTV , rateTV;
         public ViewHolder(@NonNull View itemView){
-            private TextView currencyNameTV , symbolTV , rateTV;
             super(itemView);
-            currencyNameTV = itemView.findViewByID(R.id.idTvCurrencyName);
-            symbolTV = itemView.findViewByID(R.id.idTVSymbol);
-            rateTV = itemView.findViewByID(R.id.idTVCurrencyRate);
+            currencyNameTV = itemView.findViewById(R.id.idTvCurrencyName);
+            symbolTV = itemView.findViewById(R.id.idTVSymbol);
+            rateTV = itemView.findViewById(R.id.idTVCurrencyRate);
         }
     }
 
