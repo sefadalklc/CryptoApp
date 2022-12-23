@@ -1,10 +1,15 @@
 package com.example.cryptoapp;
 
+import static android.app.ProgressDialog.show;
+import static java.lang.Character.toLowerCase;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -52,31 +57,38 @@ public class MainActivity extends AppCompatActivity {
 
         searchEdt.addTextChangedListener(new TextWatcher(){
             @Override
-            Public void beforeTextChanged(CharSequence s,int start, int count,int after){
+            public void beforeTextChanged(CharSequence s,int start, int count,int after){
 
             }
             @Override
-            Public void onTextChanged(CharSequence s,int start, int count,int after){
+            public void onTextChanged(CharSequence s,int start, int count,int after){
 
             }
+
             @Override
-            Public void afterTextChanged(CharSequence s,int start, int count,int after){
-                filterCurrencies(s.toString());
+            public void afterTextChanged(Editable editable) {
+                filterCurrencies(editable.toString());
             }
+
 
         });
     }
 
     private void filterCurrencies(String currency){
-        ArrayList<CurrencyRVModal> filteredList = new ArrayList<<((;
-        for(CurrencyRVNodal item : currencyRVModalArrayList){
-            if (item. getName() toLowerCase() contains(currency.toowerCase()))
-            filteredList.add(item);
+        ArrayList<CurrencyRVModal> filteredList = new ArrayList<>();
+        for(CurrencyRVModal item : currencyRVModalArrayList)
+        {
+            if (item. getName().toLowerCase().contains(currency.toLowerCase()))
+            {
+                filteredList.add(item);
+            }
         }
-        text: "No currency found for searched query", Toast. LENGTH_SHORT).show();
-        Toast.makeText( context: this,
-    }else{
-        currencyRVAdapter.filterList(filteredList);
+        if(filteredList.isEmpty())
+        {
+            Toast.makeText(this, "No currency found for this search query", Toast.LENGTH_SHORT).show();
+        }else{
+            currencyRVAdapter.filterList(filteredList);
+        }
 
     }
 
