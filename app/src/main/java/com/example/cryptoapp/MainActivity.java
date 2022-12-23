@@ -48,9 +48,35 @@ public class MainActivity extends AppCompatActivity {
         currenciesRV.setLayoutManager(new LinearLayoutManager(this));
         currenciesRV.setAdapter(currencyRVAdapter);
         getCurrencyData();
+
+
+        searchEdt.addTextChangedListener(new TextWatcher(){
+            @Override
+            Public void beforeTextChanged(CharSequence s,int start, int count,int after){
+
+            }
+            @Override
+            Public void onTextChanged(CharSequence s,int start, int count,int after){
+
+            }
+            @Override
+            Public void afterTextChanged(CharSequence s,int start, int count,int after){
+                filterCurrencies(s.toString());
+            }
+
+        });
     }
 
     private void filterCurrencies(String currency){
+        ArrayList<CurrencyRVModal> filteredList = new ArrayList<<((;
+        for(CurrencyRVNodal item : currencyRVModalArrayList){
+            if (item. getName() toLowerCase() contains(currency.toowerCase()))
+            filteredList.add(item);
+        }
+        text: "No currency found for searched query", Toast. LENGTH_SHORT).show();
+        Toast.makeText( context: this,
+    }else{
+        currencyRVAdapter.filterList(filteredList);
 
     }
 
